@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>양혜린 — 경력기술서 · 포트폴리오</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root {
+  --cream:  #f0ede6;
+  --cream2: #e8e4db;
+  --cream3: #ddd8ce;
+  --white:  #ffffff;
+  --sage:   #7d9e72;
+  --sage2:  #9ab88f;
+  --sage3:  #c4d9be;
+  --sage-bg:#e8f0e5;
+  --sage-dk:#4f6b46;
+  --ink:    #3a3935;
+  --ink2:   #5a5a55;
+  --ink3:   #9a9990;
+  --line:   rgba(58,57,53,0.1);
+  --line2:  rgba(58,57,53,0.05);
+  --f: 'Pretendard', -apple-system, sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:var(--f);font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased;}
+
+/* =========================================
+   인쇄 전용 스타일 (빈 공간 최소화 & 최적화)
+   ========================================= */
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+  nav{display:none!important;}
+  
+  /* 인쇄 시 불필요한 여백 대폭 축소 */
+  .hero {margin-top: 0 !important; min-height: auto !important;}
+  .hero-left {padding: 40px 30px 30px !important;}
+  .hero-right {padding: 30px 20px !important;}
+  section {padding: 35px 0 !important;}
+  .sec-head {margin-bottom: 25px !important;}
+  .cblock {padding-top: 20px !important; margin-bottom: 30px !important;}
+  .proj {margin-bottom: 15px !important; padding-bottom: 15px !important;}
+  
+  /* 큰 블록(.proj, 업무 리스트)은 자연스럽게 잘리도록 허용하여 빈 공간 방지 */
+  .proj, .tasks {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+  
+  /* 제목류, 작은 카드류만 잘리지 않게 보호 */
+  .sec-head, .phead, .cleft, .pcard, .ccard, .sg {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* 텍스트 가독성을 위한 컬러 보정 */
+  body{color:#2a2a26!important; background-color: var(--cream) !important;}
+  .tasks li,.pname,.cco,.cname,.ptitle{color:#2a2a26!important;}
+  .pdesc,.pbullets li,.sg-item,.mval{color:#3a3a36!important;}
+  .cdept,.cdetail,.ktag{color:#606060!important;}
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;background:rgba(240,237,230,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav-logo{font-size:11px;font-weight:400;letter-spacing:.14em;color:var(--ink3);text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:var(--sage);display:block;}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:11px;letter-spacing:.1em;color:var(--ink3);text-decoration:none;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--sage-dk);}
+
+/* HERO */
+.hero{margin-top:52px;display:grid;grid-template-columns:1fr 360px;min-height:360px;border-bottom:1px solid var(--line);}
+.hero-left{padding:68px 56px 56px;display:flex;flex-direction:column;justify-content:flex-end;border-right:1px solid var(--line);position:relative;overflow:hidden;}
+.hero-deco{position:absolute;right:-60px;bottom:-60px;width:260px;height:260px;background:var(--sage3);border-radius:50%;opacity:.3;pointer-events:none;}
+.hero-deco2{position:absolute;right:60px;bottom:-30px;width:160px;height:160px;background:var(--sage2);border-radius:50%;opacity:.18;pointer-events:none;}
+.hero-eyebrow{font-size:10.5px;letter-spacing:.22em;color:var(--sage);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--sage);}
+.hero-name{font-size:52px;font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:4px;color:var(--ink);}
+.hero-name-en{font-size:11px;letter-spacing:.26em;color:var(--ink3);font-weight:400;margin-bottom:24px;}
+.hero-tagline{font-size:14.5px;color:var(--ink2);font-weight:300;line-height:1.85;padding-left:14px;border-left:2px solid var(--sage2);max-width:440px;}
+.hero-right{background:var(--sage-bg);padding:48px 40px;display:flex;flex-direction:column;justify-content:center;}
+.profile-label{font-size:10px;letter-spacing:.2em;color:var(--sage);text-transform:uppercase;margin-bottom:22px;font-weight:500;}
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid rgba(125,158,114,.2);gap:12px;}
+.mrow:last-child{border-bottom:none;}
+.mkey{font-size:10px;letter-spacing:.1em;color:var(--ink3);white-space:nowrap;padding-top:2px;font-weight:400;}
+.mval{font-size:13px;font-weight:600;text-align:right;line-height:1.55;color:var(--ink);}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:9.5px;letter-spacing:.06em;margin:2px 2px;font-weight:500;}
+.p-g{background:var(--sage);color:#fff;}
+.p-dk{background:var(--sage-dk);color:#fff;}
+.p-o{border:1px solid var(--sage);color:var(--sage-dk);}
+
+/* LAYOUT */
+.wrap{max-width:1040px;margin:0 auto;padding:0 56px;}
+section{padding:68px 0;border-bottom:1px solid var(--line);}
+section:last-of-type{border-bottom:none;}
+.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:48px;}
+.sec-num{font-size:11px;letter-spacing:.14em;color:var(--sage);font-weight:500;}
+.sec-title{font-size:32px;font-weight:700;letter-spacing:-.03em;color:var(--ink);}
+.sec-line{flex:1;height:1px;background:var(--line);}
+
+/* CAREER */
+.cblock{display:grid;grid-template-columns:230px 1fr;border-top:2px solid var(--sage3);padding-top:32px;margin-bottom:52px;}
+.cblock:last-child{margin-bottom:0;}
+.cleft{padding-right:36px;}
+.cco{font-size:19px;font-weight:700;margin-bottom:4px;line-height:1.2;color:var(--ink);}
+.cdept{font-size:12.5px;color:var(--ink3);line-height:1.6;margin-bottom:6px;font-weight:400;}
+.cperiod{font-size:11px;color:var(--sage);letter-spacing:.04em;margin-bottom:10px;font-weight:500;}
+.cbadge{display:inline-block;padding:3px 10px;border-radius:3px;font-size:9.5px;letter-spacing:.06em;border:1px solid var(--line);color:var(--ink3);background:var(--cream2);}
+
+.proj{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--line2);}
+.proj:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.phead{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-bottom:11px;}
+.pname{font-size:14.5px;font-weight:700;color:var(--ink);}
+.ptag{font-size:9.5px;padding:3px 9px;border-radius:3px;letter-spacing:.04em;font-weight:500;}
+.pt-pass{background:var(--sage-bg);color:var(--sage-dk);border:1px solid var(--sage3);}
+.pt-biz{background:#f0f5ef;color:var(--sage-dk);border:1px solid var(--sage3);}
+.pt-best{background:#fdf5ec;color:#8a5a20;border:1px solid #e8d0a8;}
+.pt-solo{background:#f0f0f8;color:#4a4a9a;border:1px solid #c8c8ee;}
+
+.tasks{list-style:none;}
+.tasks li{font-size:14px;color:var(--ink2);line-height:1.8;padding:5px 0 5px 18px;position:relative;border-bottom:1px solid var(--line2);font-weight:300;}
+.tasks li:last-child{border-bottom:none;}
+.tasks li::before{content:'';position:absolute;left:0;top:15px;width:6px;height:1.5px;background:var(--sage2);}
+.ktags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.ktag{font-size:10px;letter-spacing:.04em;padding:3px 10px;border-radius:20px;background:var(--cream2);border:1px solid var(--line);color:var(--ink3);font-weight:400;}
+
+/* PORTFOLIO */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.pcard{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:28px 26px 22px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;}
+.pcard:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(58,57,53,0.07);}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sage),var(--sage2));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.pcard:hover::before{transform:scaleX(1);}
+.pnum{font-size:38px;font-weight:700;color:var(--cream3);line-height:1;margin-bottom:10px;letter-spacing:-.04em;}
+.pcat{font-size:10px;letter-spacing:.14em;color:var(--sage);text-transform:uppercase;margin-bottom:6px;font-weight:500;}
+.ptitle{font-size:18px;font-weight:700;line-height:1.35;margin-bottom:10px;color:var(--ink);}
+.pdesc{font-size:13px;color:var(--ink2);line-height:1.8;margin-bottom:12px;font-weight:300;}
+.pbullets{list-style:none;margin-bottom:14px;}
+.pbullets li{font-size:13px;color:var(--ink2);line-height:1.7;padding:3px 0 3px 13px;position:relative;font-weight:300;}
+.pbullets li::before{content:'';position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--sage3);}
+.pfoot{display:flex;flex-wrap:wrap;gap:5px;padding-top:12px;border-top:1px solid var(--line2);}
+
+/* CERTS */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.ccard{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:18px 20px;border-top:3px solid var(--sage3);transition:border-top-color .2s;}
+.ccard:hover{border-top-color:var(--sage);}
+.ctype{font-size:9.5px;letter-spacing:.12em;color:var(--sage);text-transform:uppercase;margin-bottom:6px;font-weight:500;}
+.cname{font-size:13.5px;font-weight:700;margin-bottom:3px;color:var(--ink);}
+.cdetail{font-size:11px;color:var(--ink3);line-height:1.6;font-weight:400;}
+
+/* SKILLS */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.sg{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:18px 20px;transition:box-shadow .2s;}
+.sg:hover{box-shadow:0 4px 16px rgba(125,158,114,.1);}
+.sg:last-child{border-color:var(--sage2);}
+.sg-title{font-size:9.5px;letter-spacing:.12em;color:var(--sage-dk);text-transform:uppercase;margin-bottom:11px;font-weight:600;}
+.sg-item{font-size:13px;color:var(--ink2);display:flex;align-items:flex-start;gap:8px;padding:3.5px 0;line-height:1.65;font-weight:300;}
+.sg-item::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:var(--sage3);flex-shrink:0;margin-top:7px;}
+.sg:last-child .sg-item::before{background:var(--sage2);}
+
+footer{background:var(--sage-dk);padding:40px 56px;display:flex;align-items:center;justify-content:space-between;}
+.ft-l{font-size:20px;font-weight:300;color:var(--sage3);letter-spacing:.04em;}
+.ft-r{font-size:10px;color:rgba(196,217,190,.5);letter-spacing:.1em;text-align:right;line-height:1.9;font-weight:400;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.hero-left{animation:fadeUp .7s cubic-bezier(.16,1,.3,1) both;}
+.hero-right{animation:fadeUp .7s .1s cubic-bezier(.16,1,.3,1) both;}
+
+@media(max-width:780px){
+  nav{padding:0 20px;}
+  .hero{grid-template-columns:1fr;}
+  .hero-left{padding:52px 20px 40px;}
+  .hero-right{padding:32px 20px;border-top:1px solid var(--line);}
+  .hero-name{font-size:40px;}
+  .wrap{padding:0 20px;}
+  .cblock{grid-template-columns:1fr;gap:14px;}
+  .pgrid,.cgrid,.sgrid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:10px;}
+  .ft-r{text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span class="nav-dot"></span>Yang Hyelin — Resume &amp; Portfolio 2026</div>
+  <div class="nav-links">
+    <a href="#career">경력</a><a href="#portfolio">포트폴리오</a><a href="#certs">자격</a><a href="#skills">역량</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-deco"></div><div class="hero-deco2"></div>
+    <p class="hero-eyebrow">㈔한국심사자격인증원 자격인증팀 지원</p>
+    <h1 class="hero-name">양혜린</h1>
+    <p class="hero-name-en">YANG &nbsp; HYELIN</p>
+    <p class="hero-tagline">전자전기공학 전공과 교육 콘텐츠 기획·운영 경험을 바탕으로<br>학습자 중심의 서비스를 설계하고, 다수의 이해관계자와 협력해<br>정확하고 꼼꼼하게 완성해 온 에듀테크 기획자입니다.</p>
+  </div>
+  <div class="hero-right">
+    <p class="profile-label">Profile</p>
+    <div class="mrow"><span class="mkey">지원직무</span><span class="mval">자격인증팀 행정 (KAR)</span></div>
+    <div class="mrow"><span class="mkey">경력</span><span class="mval">4년 이상 (신입·경력)</span></div>
+    <div class="mrow"><span class="mkey">전공</span><span class="mval">전자전기공학<br><span style="font-size:12px;color:var(--ink3);font-weight:400">교직이수 · 중등2급 정교사</span></span></div>
+    <div class="mrow"><span class="mkey">자격증</span><span class="mval"><span class="pill p-g">전기기사</span><span class="pill p-dk">컴활 1급</span><br><span class="pill p-o">중등2급 정교사</span></span></div>
+    <div class="mrow"><span class="mkey">핵심역량</span><span class="mval" style="font-size:13px;line-height:1.75;font-weight:400">교육 콘텐츠 기획·운영<br>협력사 관리·행정 문서화<br>고객·이해관계자 응대</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+<section id="career">
+  <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">경력기술서</h2><div class="sec-line"></div></div>
+
+  <div class="cblock">
+    <div class="cleft">
+      <p class="cco">금성출판사</p><p class="cdept">중등교재팀 · 사원/팀원</p>
+      <p class="cperiod">2023.06 — 재직 중</p><span class="cbadge">정규직</span>
+    </div>
+    <div>
+      <div class="proj">
+        <div class="phead"><span class="pname">중·고등 정보 AI 디지털 교과서 기획 및 서비스 운영</span><span class="ptag pt-pass">고등 정보 검정 합격</span><span class="ptag pt-biz">국가 시범사업</span></div>
+        <ul class="tasks">
+          <li>학습 맵 설계 및 스토리보드 작성 — 진단평가 기반 수준별 학습 경로 구성, 단원별 핵심 목표 체계화</li>
+          <li>연간 제작 일정 수립 및 협력사 통합 관리 — 10개 이상 협력사 일정 조율, 구글 스프레드시트로 담당자·산출물·검수 이력 관리</li>
+          <li>서비스 운영 중 개선 요청 실시간 대응 — 사용자 문의·불편 사항 파악 후 개발사에 전달·처리</li>
+          <li>접근성 개선 — 직접 체험 테스트 수행, 자막·음성 안내·색 대비 개선안 도출 후 개발사와 협의·구현</li>
+          <li>교육 박람회 현장 운영 참여, 홍보팀과 온라인 프로모션 이벤트 기획</li>
+        </ul>
+        <div class="ktags"><span class="ktag">학습 맵 설계</span><span class="ktag">스토리보드</span><span class="ktag">협력사 관리</span><span class="ktag">Google Sheets</span><span class="ktag">접근성 UX</span><span class="ktag">박람회 운영</span></div>
+      </div>
+      <div class="proj">
+        <div class="phead"><span class="pname">기술·가정 / 실과 / 정보 교과 고객 문의 응대</span></div>
+        <ul class="tasks">
+          <li>기술·가정, 실과, 정보 교과 관련 교사·학생·학부모 문의를 전화·이메일로 직접 처리</li>
+          <li>CS 센터 연계 답변 작성 — 반복 문의 유형을 파악하고 응대 내용을 정리하여 일관된 답변 체계 유지</li>
+          <li>교과서 오류·배송·자료 요청 등 다양한 유형의 민원을 정확하고 차분하게 처리</li>
+        </ul>
+        <div class="ktags"><span class="ktag">고객 문의 응대</span><span class="ktag">CS 센터 연계</span><span class="ktag">민원 처리</span></div>
+      </div>
+      <div class="proj">
+        <div class="phead"><span class="pname">중·고등 정보 교과서 개발</span><span class="ptag pt-biz">2022 개정 교육과정</span></div>
+        <ul class="tasks">
+          <li>교과서 기획 단계부터 참여 — 원고 작성, 편집, 이미지 발주, 디자인 검수 등 기획·개발 전반</li>
+          <li>저자·협력사와 협업하여 콘텐츠 완성도 강화, 교과서 홍보 웹사이트 스토리보드 구성</li>
+        </ul>
+        <div class="ktags"><span class="ktag">교과서 편집</span><span class="ktag">원고 작성</span><span class="ktag">저자 협업</span></div>
+      </div>
+      <div class="proj">
+        <div class="phead"><span class="pname">2022 중·고등 정보 지도서 및 전자저작물 개발</span></div>
+        <ul class="tasks">
+          <li>지도서 체제안 및 내지 디자인 시안 기획, 교수·학습 자료 및 수업용 PPT 제작</li>
+          <li>온·오프라인 수업 환경을 고려한 다중 포맷 전자저작물 기획·제작</li>
+        </ul>
+        <div class="ktags"><span class="ktag">지도서 기획</span><span class="ktag">PPT 제작</span><span class="ktag">전자저작물</span></div>
+      </div>
+      <div class="proj">
+        <div class="phead"><span class="pname">2015 초등 과학 디지털 교과서 수정·보완 · 인천시교육청 AI·피지컬 컴퓨팅 교과서</span></div>
+        <ul class="tasks">
+          <li>교육과정 개편에 따른 콘텐츠 검수 및 수정 스토리보드 작성, 실험·탐구 중심 영상 콘티 작성</li>
+          <li>AI·피지컬 컴퓨팅 실습 콘텐츠 기획·검수, 실습 중심 학습 시나리오 설계</li>
+        </ul>
+        <div class="ktags"><span class="ktag">콘텐츠 검수</span><span class="ktag">AI 실습</span><span class="ktag">피지컬 컴퓨팅</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cblock">
+    <div class="cleft">
+      <p class="cco">㈜에듀윌</p><p class="cdept">전기·안전관리출판팀<br>사원·매니저</p>
+      <p class="cperiod">2021.08 — 2023.06</p><span class="cbadge">정규직</span>
+    </div>
+    <div>
+      <div class="proj">
+        <div class="phead"><span class="pname">전기기사(필기·실기) 시리즈 PM</span><span class="ptag pt-solo">단독 PM</span></div>
+        <ul class="tasks">
+          <li>국가기술자격 교재 교정·교열 및 문제 집필 등 전반적인 개발 과정 총괄</li>
+          <li>CBT 전환 대응 유형별 N제 신규 구성 기획, 문제 복원 및 교재 설계</li>
+          <li>자동 채점·QR 기반 학습 연동 등 온라인 학습 서비스 기획 요소 제안</li>
+          <li>마케팅팀·웹서비스기획팀과 협업하여 시험 시즌 홍보 콘텐츠·이벤트 기획·운영</li>
+          <li>수험생 커뮤니티 문의 응대 — 학습 관련 문의 직접 처리, 피드백 수집 및 교재 개선에 반영</li>
+        </ul>
+        <div class="ktags"><span class="ktag">수험서 PM</span><span class="ktag">이공계 집필</span><span class="ktag">CBT 대응</span><span class="ktag">마케팅 협업</span><span class="ktag">고객 응대</span></div>
+      </div>
+      <div class="proj">
+        <div class="phead"><span class="pname">소방설비기사 필기 기출문제집</span><span class="ptag pt-best">베스트셀러</span><span class="ptag pt-solo">단독 PM</span></div>
+        <ul class="tasks">
+          <li>업계 최초 문제편/해설편 분권 구성 기획 — 수험생 VoC 분석 → 샘플 직접 제작·검증 → 기획안 경영진 보고 → 출간 승인 전 과정 단독 주도</li>
+          <li>핵심 이론·빈출문제 부록 직접 집필, 강의·홍보 콘텐츠 연계 제작</li>
+          <li>독자 설문 데이터 수집·분석, 결과 기반 후속 개정 방향 수립</li>
+        </ul>
+        <div class="ktags"><span class="ktag">분권 기획</span><span class="ktag">VoC 분석</span><span class="ktag">데이터 기반 개선</span><span class="ktag">집필</span></div>
+      </div>
+      <div class="proj">
+        <div class="phead"><span class="pname">소방설비기사 기본서(전기·기계) 교재 기획 및 제작</span></div>
+        <ul class="tasks">
+          <li>저자 원고 정리 및 해설·부록 직접 집필, 최신 법령 상시 모니터링·반영</li>
+          <li>부가 서비스(빈출문제 강의, 답정너 PDF, 소방기초용어 ZIP) 기획·제작</li>
+          <li>신규 강사 섭외 및 촬영 교안 구성, 영상 홍보 콘텐츠 제작 참여</li>
+        </ul>
+        <div class="ktags"><span class="ktag">교재 PM</span><span class="ktag">법령 모니터링</span><span class="ktag">강사 섭외</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">포트폴리오</h2><div class="sec-line"></div></div>
+  <div class="pgrid">
+    <div class="pcard"><p class="pnum">01</p><p class="pcat">교육 운영 · 행정 관리</p><h3 class="ptitle">심사원 교육 운영과 맞닿은<br>다부서 협업 관리 경험</h3><p class="pdesc">협력사 10곳 이상의 일정·산출물 통합 관리 경험. KAR 심사원 교육 운영과 구조가 같습니다.</p><ul class="pbullets"><li>구글 스프레드시트로 담당자·일정·검수 이력 통합 관리 체계 구축</li><li>협력사 일정 충돌 조율, 상황별 가이드로 커뮤니케이션 일원화</li><li>전국 교육 박람회 현장 운영 — 참석자 응대 및 서비스 홍보</li></ul><div class="pfoot"><span class="ktag">일정 관리</span><span class="ktag">협력사 조율</span><span class="ktag">교육 운영</span></div></div>
+    <div class="pcard"><p class="pnum">02</p><p class="pcat">고객 · 이해관계자 응대</p><h3 class="ptitle">에듀윌 · 금성출판사<br>고객 문의 응대 경험</h3><p class="pdesc">수험생 커뮤니티 문의 응대(에듀윌)부터 교과 고객 문의·CS 센터 연계(금성출판사)까지. 심사원 전화 상담과 구조가 같습니다.</p><ul class="pbullets"><li>교사·학생·학부모 전화·이메일 문의 직접 처리</li><li>반복 문의 유형 파악, CS 연계 답변 체계 유지</li><li>피드백 수집 → 교재 개선 연결 (소방설비기사 베스트셀러)</li></ul><div class="pfoot"><span class="ktag">전화·이메일 응대</span><span class="ktag">CS 연계</span><span class="ktag">민원 처리</span></div></div>
+    <div class="pcard"><p class="pnum">03</p><p class="pcat">이공계 배경 · 기술 문서</p><h3 class="ptitle">전기기사 + 수험서 집필<br>이공계 우대조건 직접 해당</h3><p class="pdesc">전자전기공학 전공, 전기기사 취득, KEC 참조 해설 직접 집필. ISO 기술 문서 처리에 이질감이 없습니다.</p><ul class="pbullets"><li>전기기사 필기·실기 문제 개발·해설 집필 총괄</li><li>공업계 고등학교 교생실습 — 전기·전자 강의, 실습 현장 관리</li><li>이공계 배경으로 ISO 자격 기술 문서 빠른 적응 가능</li></ul><div class="pfoot"><span class="ktag">전기기사</span><span class="ktag">기술 문서</span><span class="ktag">교생실습</span></div></div>
+    <div class="pcard"><p class="pnum">04</p><p class="pcat">행정 · 문서 관리</p><h3 class="ptitle">교재 PM — 기획부터 출간까지<br>전 과정 문서화 및 관리</h3><p class="pdesc">법령 개정 반영, 원고 정리, 개정 사이클 관리까지 전 과정 기록·관리. 자격관리 행정과 구조가 같습니다.</p><ul class="pbullets"><li>최신 법령·교육과정 변경 상시 모니터링 및 반영</li><li>저자·협력사 일정 관리 및 산출물 검수 이력 유지</li><li>꼼꼼한 교정·교열 — 정확성이 중요한 행정 업무에 직접 적용 가능</li></ul><div class="pfoot"><span class="ktag">행정 관리</span><span class="ktag">법령 모니터링</span><span class="ktag">검수</span></div></div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">자격증 · 면허</h2><div class="sec-line"></div></div>
+  <div class="cgrid">
+    <div class="ccard"><p class="ctype">교원 자격</p><p class="cname">중등학교 2급 정교사</p><p class="cdetail">전자·전기·통신<br>교육부 / 2021.08.19</p></div>
+    <div class="ccard"><p class="ctype">국가기술자격 — 이공계 우대</p><p class="cname">전기기사</p><p class="cdetail">한국산업인력공단<br>2021.06.02</p></div>
+    <div class="ccard"><p class="ctype">정보활용능력</p><p class="cname">컴퓨터활용능력 1급</p><p class="cdetail">대한상공회의소<br>2021.02.05</p></div>
+    <div class="ccard"><p class="ctype">어문 능력</p><p class="cname">한국실용글쓰기검정 준2급</p><p class="cdetail">한국국어능력평가협회<br>2021.06.22</p></div>
+    <div class="ccard"><p class="ctype">역사 인증</p><p class="cname">한국사능력검정시험 1급</p><p class="cdetail">국사편찬위원회<br>2018.06.08</p></div>
+    <div class="ccard"><p class="ctype">사무 능력</p><p class="cname">워드프로세서</p><p class="cdetail">대한상공회의소<br>2018.01.26</p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">보유 역량</h2><div class="sec-line"></div></div>
+  <div class="sgrid">
+    <div class="sg"><p class="sg-title">콘텐츠 기획·편집</p><div class="sg-item">학습 맵·스토리보드 설계</div><div class="sg-item">교재 PM (기획~출간 전 과정)</div><div class="sg-item">원고 집필·교정·교열</div><div class="sg-item">법령·교육과정 변경 반영</div></div>
+    <div class="sg"><p class="sg-title">이공계·기술 문서</p><div class="sg-item">전기기사 수험서 집필 경험</div><div class="sg-item">전자전기공학 전공 지식</div><div class="sg-item">KEC·기술기준 문서 참조 경험</div><div class="sg-item">ISO 기술 문서 빠른 적응 가능</div></div>
+    <div class="sg"><p class="sg-title">협업·운영 관리</p><div class="sg-item">10개 이상 협력사 일정 통합 관리</div><div class="sg-item">Google Sheets·Drive 관리 구축</div><div class="sg-item">부서 간 커뮤니케이션 조율</div><div class="sg-item">산출물 검수 체계 직접 구축</div></div>
+    <div class="sg"><p class="sg-title">고객·이해관계자 응대</p><div class="sg-item">에듀윌 수험생 커뮤니티 문의 응대</div><div class="sg-item">금성출판사 교과 고객 문의·CS 연계</div><div class="sg-item">박람회 현장 사용자 응대·홍보</div><div class="sg-item">반복 문의 유형 파악·응대 체계화</div></div>
+    <div class="sg"><p class="sg-title">데이터·기획 분석</p><div class="sg-item">VoC·커뮤니티 데이터 분석</div><div class="sg-item">설문 수집 및 개선 방향 도출</div><div class="sg-item">경쟁사·시장 규모 분석 경험</div><div class="sg-item">Excel / Google Sheets 활용</div></div>
+    <div class="sg"><p class="sg-title">KAR 직무 연결 강점</p><div class="sg-item">교육 운영 → 심사원 교육 운영</div><div class="sg-item">고객 응대 → 심사원 전화 상담</div><div class="sg-item">이공계 배경 → 자격 기술 문서 이해</div><div class="sg-item">교생실습 → 필기시험 현장 감독</div></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="ft-l">Yang Hyelin</div>
+  <div class="ft-r">경력기술서 &amp; 포트폴리오 · 2026<br>㈔한국심사자격인증원 자격인증팀 지원</div>
+</footer>
+
+<script>
+const els=document.querySelectorAll('.cblock,.pcard,.ccard,.sg');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const idx=Array.from(els).indexOf(e.target);
+      e.target.style.animationDelay=(idx%3)*60+'ms';
+      e.target.style.animation='fadeUp .5s cubic-bezier(.16,1,.3,1) both';
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.06});
+els.forEach(el=>{el.style.opacity='0';io.observe(el);});
+</script>
+</body>
+</html>
